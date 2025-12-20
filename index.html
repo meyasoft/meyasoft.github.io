@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meyasoft - Apps</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .apps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .app-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .app-link:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .app-icon {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+
+        .app-info {
+            text-align: left;
+        }
+
+        .app-name {
+            font-weight: bold;
+        }
+
+        .app-desc {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 Meyasoft</h1>
+        <p>Mobile Applications</p>
+
+        <div class="apps">
+            <a href="apps/colic/privacy.html" class="app-link">
+                <span class="app-icon">👶</span>
+                <div class="app-info">
+                    <div class="app-name">Colic Baby</div>
+                    <div class="app-desc">Privacy Policy</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            © 2024 Meyasoft Yazılım
+        </div>
+    </div>
+</body>
+
+</html>
