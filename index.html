@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meyasoft - Apps</title>
+    <title>Meyasoft - Mobile App Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,102 +15,315 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 40px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 500px;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .apps {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .app-link {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
+        nav a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
+            margin-left: 30px;
+            font-size: 14px;
+            transition: color 0.3s;
         }
 
-        .app-link:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        /* Apps Section */
+        .apps-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
         }
 
         .app-icon {
-            font-size: 30px;
-            margin-right: 15px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 24px;
         }
 
-        .app-info {
-            text-align: left;
+        .app-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
-        .app-name {
-            font-weight: bold;
+        .app-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        .app-desc {
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
             font-size: 12px;
-            color: #888;
+            color: var(--text-secondary);
         }
 
-        .footer {
-            margin-top: 30px;
-            color: #888;
-            font-size: 12px;
+        .view-app {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .apps-section {
+                padding: 40px 20px;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-card {
+                padding: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>🚀 Meyasoft</h1>
-        <p>Mobile Applications</p>
+    <div class="bg-gradient"></div>
 
-        <div class="apps">
-            <a href="apps/colic/privacy.html" class="app-link">
-                <span class="app-icon">👶</span>
-                <div class="app-info">
-                    <div class="app-name">Colic Baby</div>
-                    <div class="app-desc">Privacy Policy</div>
-                </div>
-            </a>
-        </div>
+    <header>
+        <div class="logo">🚀 Meyasoft</div>
+        <nav>
+            <a href="#apps">Apps</a>
+            <a href="#about">About</a>
+            <a href="mailto:meyasoftware@gmail.com">Contact</a>
+        </nav>
+    </header>
 
-        <div class="footer">
-            © 2024 Meyasoft Yazılım
-        </div>
-    </div>
+    <main>
+        <section class="hero">
+            <span class="hero-badge">✨ Mobile App Development Studio</span>
+            <h1>Creating Apps That Make Life Easier</h1>
+            <p>We develop simple, effective mobile applications focused on solving real problems for families and
+                everyday users.</p>
+        </section>
+
+        <section class="apps-section" id="apps">
+            <h2 class="section-title">Our Apps</h2>
+            <div class="apps-grid">
+                <a href="apps/colic/" class="app-card">
+                    <div class="app-icon">👶</div>
+                    <h3>Colic Baby</h3>
+                    <p>Help your baby (and you!) fall asleep using proven white noise sounds. Features timer
+                        functionality and background playback for uninterrupted sleep support.</p>
+                    <div class="app-tags">
+                        <span class="tag">White Noise</span>
+                        <span class="tag">Baby Sleep</span>
+                        <span class="tag">Timer</span>
+                        <span class="tag">Android</span>
+                    </div>
+                    <div class="view-app">
+                        Learn More →
+                    </div>
+                </a>
+
+                <!-- More apps can be added here -->
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <h2>About Meyasoft</h2>
+            <p>Meyasoft Yazılım is a software development company based in Turkey, dedicated to creating high-quality
+                mobile applications. Our mission is to develop apps that are simple to use, privacy-focused, and
+                genuinely helpful in everyday life.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Meyasoft Yazılım. All rights reserved.</p>
+        <p style="margin-top: 10px;">
+            <a href="mailto:meyasoftware@gmail.com">meyasoftware@gmail.com</a>
+        </p>
+    </footer>
 </body>
 
 </html>
