@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meyasoft - Mobile App Development</title>
+    <title>Meyasoft - Mobile Apps & Games Studio</title>
+    <meta name="description" content="Meyasoft Software - Independent developer of mobile apps and games on Google Play and Apple App Store. Discover TabPen, Colic Baby, Royal Chicken Clash, and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,10 +20,14 @@
             --primary: #6366f1;
             --primary-dark: #4f46e5;
             --secondary: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-amber: #f59e0b;
             --bg-dark: #0f172a;
             --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
@@ -41,9 +46,9 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
             z-index: -1;
         }
 
@@ -53,27 +58,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
             font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            font-weight: 800;
+            background: linear-gradient(135deg, #818cf8 0%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            margin-left: 30px;
             font-size: 14px;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
@@ -81,97 +96,190 @@
             color: var(--text-primary);
         }
 
+        .nav-cta {
+            padding: 8px 18px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            border-radius: 20px;
+            color: #818cf8 !important;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: rgba(99, 102, 241, 0.35);
+            transform: translateY(-1px);
+        }
+
         /* Hero Section */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 40px;
+            padding: 90px 40px 60px;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 72px);
-            font-weight: 700;
-            line-height: 1.1;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            color: #a5b4fc;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6.5vw, 68px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 19px;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
+            max-width: 680px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(99, 102, 241, 0.2);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+        .hero-stores {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero-store-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
             font-size: 14px;
-            color: var(--primary);
-            margin-bottom: 24px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .hero-store-pill:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
         }
 
         /* Apps Section */
         .apps-section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 50px 40px 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 50px;
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 30px;
         }
 
         .app-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 40px;
+            padding: 34px;
             backdrop-filter: blur(20px);
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
         .app-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.18);
         }
 
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
-            border-radius: 20px;
+        .card-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin-bottom: 24px;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .app-icon-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .platform-badge {
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #e2e8f0;
+        }
+
+        .badge-android {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .badge-ios {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+        }
+
+        .badge-both {
+            background: rgba(236, 72, 153, 0.15);
+            border-color: rgba(236, 72, 153, 0.3);
+            color: #f472b6;
         }
 
         .app-card h3 {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 23px;
+            font-weight: 700;
             margin-bottom: 12px;
         }
 
@@ -179,42 +287,138 @@
             color: var(--text-secondary);
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            flex-grow: 1;
         }
 
         .app-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-bottom: 24px;
         }
 
         .tag {
-            padding: 6px 12px;
+            padding: 5px 11px;
             background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             border-radius: 6px;
             font-size: 12px;
             color: var(--text-secondary);
         }
 
-        .view-app {
+        .card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .view-app-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            font-weight: 500;
-            margin-top: 20px;
+            gap: 6px;
+            color: #818cf8;
+            font-weight: 600;
+            font-size: 14px;
+            transition: gap 0.2s;
+        }
+
+        .app-card:hover .view-app-link {
+            gap: 10px;
+            color: #a5b4fc;
+        }
+
+        .store-pill-mini {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Developer Stores Showcase */
+        .stores-showcase {
+            max-width: 1200px;
+            margin: 20px auto 70px;
+            padding: 0 40px;
+        }
+
+        .stores-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.12) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .stores-banner-text h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .stores-banner-text p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .stores-banner-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .store-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .store-cta-btn:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+
+        .store-cta-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .store-cta-info span {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .store-cta-info small {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 12px;
         }
 
         /* About Section */
         .about-section {
             max-width: 800px;
             margin: 0 auto;
-            padding: 100px 40px;
+            padding: 60px 40px 90px;
             text-align: center;
         }
 
         .about-section h2 {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 20px;
         }
 
@@ -222,23 +426,96 @@
             color: var(--text-secondary);
             font-size: 16px;
             line-height: 1.8;
+            margin-bottom: 18px;
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 14px;
+            border-top: 1px solid var(--border);
+            padding: 60px 40px 40px;
+            background: rgba(10, 15, 30, 0.6);
         }
 
-        footer a {
-            color: var(--primary);
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #818cf8 0%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 380px;
+        }
+
+        .footer-col h5 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #818cf8;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: #818cf8;
             text-decoration: none;
         }
 
         /* Responsive */
+        @media (max-width: 900px) {
+            .stores-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
@@ -249,19 +526,24 @@
             }
 
             .hero {
-                padding: 60px 20px;
+                padding: 60px 20px 40px;
             }
 
-            .apps-section {
-                padding: 40px 20px;
+            .apps-section,
+            .stores-showcase,
+            .about-section {
+                padding-left: 20px;
+                padding-right: 20px;
             }
 
             .apps-grid {
                 grid-template-columns: 1fr;
             }
 
-            .app-card {
-                padding: 30px;
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }
     </style>
@@ -271,58 +553,207 @@
     <div class="bg-gradient"></div>
 
     <header>
-        <div class="logo">🚀 Meyasoft</div>
+        <a href="#" class="logo">🚀 Meyasoft</a>
         <nav>
-            <a href="#apps">Apps</a>
+            <a href="#apps">Applications</a>
+            <a href="#stores">Developer Profiles</a>
             <a href="#about">About</a>
-            <a href="mailto:meyasoftware@gmail.com">Contact</a>
+            <a href="mailto:meyasoftware@gmail.com" class="nav-cta">Contact Us</a>
         </nav>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero">
-            <span class="hero-badge">✨ Mobile App Development Studio</span>
-            <h1>Creating Apps That Make Life Easier</h1>
-            <p>We develop simple, effective mobile applications focused on solving real problems for families and
-                everyday users.</p>
-        </section>
-
-        <section class="apps-section" id="apps">
-            <h2 class="section-title">Our Apps</h2>
-            <div class="apps-grid">
-                <a href="apps/colic/" class="app-card">
-                    <div class="app-icon">👶</div>
-                    <h3>Colic Baby</h3>
-                    <p>Help your baby (and you!) fall asleep using proven white noise sounds. Features timer
-                        functionality and background playback for uninterrupted sleep support.</p>
-                    <div class="app-tags">
-                        <span class="tag">White Noise</span>
-                        <span class="tag">Baby Sleep</span>
-                        <span class="tag">Timer</span>
-                        <span class="tag">Android</span>
-                    </div>
-                    <div class="view-app">
-                        Learn More →
-                    </div>
+            <span class="hero-badge">✨ Mobile Apps & Games Studio</span>
+            <h1>Crafting Apps & Games That Make Life Easier & Fun</h1>
+            <p>From practical daily utilities and study assistants to energetic 3D action and word puzzle games, we create well-crafted experiences on Android and iOS.</p>
+            <div class="hero-stores">
+                <a href="https://play.google.com/store/apps/developer?id=Meyasoft+Apps%26Games" target="_blank" rel="noopener" class="hero-store-pill">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    Google Play: Meyasoft Apps&Games
                 </a>
-
-                <!-- More apps can be added here -->
+                <a href="https://apps.apple.com/tr/developer/recep-yazik/id1576958497" target="_blank" rel="noopener" class="hero-store-pill">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.81 1.42-.58.67-.99 1.74-.93 2.78 1.07.08 2.12-.58 2.73-1.33z"/>
+                    </svg>
+                    App Store: Recep YAZIK
+                </a>
             </div>
         </section>
 
+        <!-- Apps Grid -->
+        <section class="apps-section" id="apps">
+            <div class="section-header">
+                <h2 class="section-title">Our Featured Applications</h2>
+                <p class="section-subtitle">Explore our latest utility apps and interactive games crafted with privacy and quality in mind.</p>
+            </div>
+
+            <div class="apps-grid">
+                <!-- App 1: TabPen -->
+                <a href="apps/tabpen/" class="app-card">
+                    <div class="card-top">
+                        <img src="assets/icons/tabpen.png" alt="TabPen Icon" class="app-icon-img">
+                        <span class="platform-badge badge-android">Android</span>
+                    </div>
+                    <h3>TabPen: Screen Draw & Note</h3>
+                    <p>Draw and annotate directly over any active app, PDF document, or video lecture on your tablet. Features touch pass-through, split-screen mode, and built-in exam/pomodoro timers.</p>
+                    <div class="app-tags">
+                        <span class="tag">Overlay Drawing</span>
+                        <span class="tag">PDF Annotation</span>
+                        <span class="tag">S-Pen & Stylus</span>
+                        <span class="tag">Study Timer</span>
+                    </div>
+                    <div class="card-actions">
+                        <span class="view-app-link">Learn More & View Details →</span>
+                        <span class="store-pill-mini">Google Play</span>
+                    </div>
+                </a>
+
+                <!-- App 2: Colic Baby -->
+                <a href="apps/colic/" class="app-card">
+                    <div class="card-top">
+                        <img src="assets/icons/colic-baby.png" alt="Colic Baby Icon" class="app-icon-img">
+                        <span class="platform-badge badge-both">Android & iOS</span>
+                    </div>
+                    <h3>Colic Baby: Sleep Sounds</h3>
+                    <p>Help babies soothe crying, ease colic discomfort, and fall asleep naturally with high-quality white noise, hair dryer, vacuum, and womb sounds. Includes smart timers and background play.</p>
+                    <div class="app-tags">
+                        <span class="tag">White Noise</span>
+                        <span class="tag">Baby Sleep</span>
+                        <span class="tag">Timer Fade-out</span>
+                        <span class="tag">Zero Ads</span>
+                    </div>
+                    <div class="card-actions">
+                        <span class="view-app-link">Learn More & View Details →</span>
+                        <span class="store-pill-mini">Google Play & App Store</span>
+                    </div>
+                </a>
+
+                <!-- App 3: Royal Chicken Clash -->
+                <a href="apps/royal-chicken-clash/" class="app-card">
+                    <div class="card-top">
+                        <img src="assets/icons/royal-chicken.png" alt="Royal Chicken Clash Icon" class="app-icon-img">
+                        <span class="platform-badge badge-ios">iOS</span>
+                    </div>
+                    <h3>Royal Chicken Clash</h3>
+                    <p>An exhilarating 3D action runner and crowd battle game! Multiply your team along the obstacle track, navigate past lethal spinning blades, and clash against the giant Royal Chicken.</p>
+                    <div class="app-tags">
+                        <span class="tag">Action Runner</span>
+                        <span class="tag">Crowd Battle</span>
+                        <span class="tag">Boss Fights</span>
+                        <span class="tag">Offline Play</span>
+                    </div>
+                    <div class="card-actions">
+                        <span class="view-app-link">Learn More & View Details →</span>
+                        <span class="store-pill-mini">Apple App Store</span>
+                    </div>
+                </a>
+
+                <!-- App 4: Word Find Perfect -->
+                <a href="apps/word-find/" class="app-card">
+                    <div class="card-top">
+                        <img src="assets/icons/word-find.png" alt="Word Find Perfect Icon" class="app-icon-img">
+                        <span class="platform-badge badge-ios">iOS</span>
+                    </div>
+                    <h3>Word Find Perfect</h3>
+                    <p>Exercise your brain and discover hidden words in a tranquil, beautifully styled word puzzle experience. Packed with hundreds of challenging levels and vocabulary challenges.</p>
+                    <div class="app-tags">
+                        <span class="tag">Word Puzzle</span>
+                        <span class="tag">Brain Exercise</span>
+                        <span class="tag">Relaxing</span>
+                        <span class="tag">Hundreds of Levels</span>
+                    </div>
+                    <div class="card-actions">
+                        <span class="view-app-link">Learn More & View Details →</span>
+                        <span class="store-pill-mini">Apple App Store</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Developer Profiles Showcase -->
+        <section class="stores-showcase" id="stores">
+            <div class="stores-banner">
+                <div class="stores-banner-text">
+                    <h2>Official Developer Profiles</h2>
+                    <p>Access our complete portfolio of applications, updates, and upcoming releases directly on official application stores.</p>
+                </div>
+                <div class="stores-banner-buttons">
+                    <a href="https://play.google.com/store/apps/developer?id=Meyasoft+Apps%26Games" target="_blank" rel="noopener" class="store-cta-btn">
+                        <div class="store-cta-info">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#34d399">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            <div>
+                                <span>Google Play Store</span>
+                                <small>Meyasoft Apps&Games</small>
+                            </div>
+                        </div>
+                        <span>Browse →</span>
+                    </a>
+                    <a href="https://apps.apple.com/tr/developer/recep-yazik/id1576958497" target="_blank" rel="noopener" class="store-cta-btn">
+                        <div class="store-cta-info">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#60a5fa">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.81 1.42-.58.67-.99 1.74-.93 2.78 1.07.08 2.12-.58 2.73-1.33z"/>
+                            </svg>
+                            <div>
+                                <span>Apple App Store</span>
+                                <small>Recep YAZIK</small>
+                            </div>
+                        </div>
+                        <span>Browse →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
         <section class="about-section" id="about">
             <h2>About Meyasoft</h2>
-            <p>Meyasoft Yazılım is a software development company based in Turkey, dedicated to creating high-quality
-                mobile applications. Our mission is to develop apps that are simple to use, privacy-focused, and
-                genuinely helpful in everyday life.</p>
+            <p>Meyasoft Yazılım is an independent software studio founded with the goal of creating clean, privacy-respecting, and purposeful mobile experiences.</p>
+            <p>Whether helping new parents calm crying newborns, empowering students with overlay drawing and annotation tools, or delighting players with engaging games, our commitment is always centered on simplicity, performance, and user satisfaction.</p>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2024 Meyasoft Yazılım. All rights reserved.</p>
-        <p style="margin-top: 10px;">
-            <a href="mailto:meyasoftware@gmail.com">meyasoftware@gmail.com</a>
-        </p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>🚀 Meyasoft</h4>
+                <p>Mobile applications and games crafted with care for Android and iOS users worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Our Apps</h5>
+                <ul>
+                    <li><a href="apps/tabpen/">TabPen</a></li>
+                    <li><a href="apps/colic/">Colic Baby</a></li>
+                    <li><a href="apps/royal-chicken-clash/">Royal Chicken Clash</a></li>
+                    <li><a href="apps/word-find/">Word Find Perfect</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Privacy & Support</h5>
+                <ul>
+                    <li><a href="apps/tabpen/privacy.html">TabPen Privacy</a></li>
+                    <li><a href="apps/colic/privacy.html">Colic Baby Privacy</a></li>
+                    <li><a href="apps/royal-chicken-clash/privacy.html">Royal Chicken Privacy</a></li>
+                    <li><a href="apps/word-find/privacy.html">Word Find Privacy</a></li>
+                    <li><a href="mailto:colicbabyapp@gmail.com">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Meyasoft Yazılım. All rights reserved.</p>
+            <p>
+                Developer Profiles:
+                <a href="https://play.google.com/store/apps/developer?id=Meyasoft+Apps%26Games" target="_blank" rel="noopener">Google Play</a> ·
+                <a href="https://apps.apple.com/tr/developer/recep-yazik/id1576958497" target="_blank" rel="noopener">App Store</a>
+            </p>
+        </div>
     </footer>
 </body>
 

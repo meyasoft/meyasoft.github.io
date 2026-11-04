@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Chicken Clash - 3D Action Runner Game | Meyasoft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px 50px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50px;
+            font-size: 13px;
+            color: #fbbf24;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .hero-content h1 {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #fbbf24 0%, #f87171 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .store-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        .app-preview-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            max-width: 380px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
+        .hero-app-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
+        }
+
+        .hero-app-card h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .hero-app-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Features */
+        .features {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 50px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(245, 158, 11, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Links */
+        .links {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 10px 16px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .store-buttons {
+                justify-content: center;
+            }
+
+            .features {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+
+    <header>
+        <a href="../../" class="back-link">← Back to Meyasoft</a>
+        <div class="logo-wrap">
+            <img src="../../assets/icons/royal-chicken.png" alt="Royal Chicken Clash Icon" class="logo-icon">
+            <span class="logo-text">Royal Chicken Clash</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">⚔️ 3D Action Runner & Crowd Clash</span>
+                <h1>Gather Your Gang, <span>Clash & Conquer!</span></h1>
+                <p>Lead your crowd through perilous obstacle courses, multiply your teammates, dodge deadly swinging blades and traps, and prepare for an epic showdown against the Boss Royal Chicken!</p>
+                <div class="store-buttons">
+                    <a href="https://apps.apple.com/app/royal-chicken-clash/id1602996189" class="store-btn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.81 1.42-.58.67-.99 1.74-.93 2.78 1.07.08 2.12-.58 2.73-1.33z"/>
+                        </svg>
+                        Download on the App Store
+                    </a>
+                </div>
+            </div>
+            <div class="app-preview-wrap">
+                <div class="hero-app-card">
+                    <img src="../../assets/icons/royal-chicken.png" alt="Royal Chicken Clash Icon" class="hero-app-icon">
+                    <h3>Royal Chicken Clash</h3>
+                    <p>Action Runner & Crowd Battle</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Game Highlights</h2>
+            <p class="section-desc">Fast-paced, satisfying, and endlessly entertaining gameplay for gamers of all ages.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏃‍♂️</div>
+                    <h3>Dynamic Crowd Runner</h3>
+                    <p>Start running alone and collect teammates along the way to build an unstoppable crowd.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪓</div>
+                    <h3>Deadly Obstacles & Traps</h3>
+                    <p>Dodge spinning blades, crushing wrecking balls, and fiery chasms to protect your squad.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐔</div>
+                    <h3>Epic Boss Battles</h3>
+                    <p>Face off against the giant Royal Chicken at the end of each run in a thrilling climactic battle.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Intuitive One-Touch Controls</h3>
+                    <p>Smooth swipe-to-move mechanics that feel great on both iPhone and iPad screens.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Rewarding Progression</h3>
+                    <p>Unlock new characters, upgrade your crowd's speed and strength, and conquer high scores.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✈️</div>
+                    <h3>Play Anywhere Offline</h3>
+                    <p>Enjoy smooth action on the go without requiring an active internet connection.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="https://apps.apple.com/app/royal-chicken-clash/id1602996189" target="_blank" rel="noopener">App Store</a>
+            <a href="https://apps.apple.com/tr/developer/recep-yazik/id1576958497" target="_blank" rel="noopener">Developer Profile</a>
+            <a href="../../">More Apps</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Meyasoft Yazılım. All rights reserved.</p>
+        <p style="margin-top: 8px; font-size: 13px;">Crafted for fun and excitement 🎮</p>
+    </footer>
+</body>
+
+</html>
